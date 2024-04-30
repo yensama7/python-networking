@@ -7,9 +7,11 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 import sys
 
-server = smtplib.SMTP('smtp.gmail.com',25, timeout=20) #defining the server and port
+server = smtplib.SMTP('smtp.gmail.com',25, timeout=20) #defining the server(server can be changed depending on the aerver you use eg. gmail, yahoo) and port
 server.ehlo() #Starts server
 
+sender = input("Gmail sending message: ")
+receiver = input("GMail address of person recieving: ")
 #save your password in a text file in the same directory as the code (you can choose to encrypt and decrypt the password) and read it
 #but this does not encrypt
 try:
@@ -18,11 +20,11 @@ try:
 except:
     sys.exit("Password file not found")
 
-server.login('example@gmail.com', password) #logs into the sending email
+server.login(f'{sender}', password) #logs into the sending email
 # Mail content*************************
 msg = MIMEMultipart()
 msg['From'] = 'yensama7'
-msg['To'] = 'recipiant@gmail.com'
+msg['To'] = f'{receiver}'
 msg['Subject'] = 'Mailing client'
 
 try:
@@ -47,4 +49,4 @@ p.add_header('Content-Disposition',f'attach, filename={filename}')
 msg.attach(p)
 
 text = msg.as_string() #turns the message into string
-server.sendmail('example@gmail.com', 'recipiant@gmail.com', text)
+server.sendmail(f'{sender}', f'{receiver}', text)
