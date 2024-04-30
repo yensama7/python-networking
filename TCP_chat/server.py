@@ -3,6 +3,12 @@ import socket
 
 
 #Define a host and a port for our server
+#you can use your router's ip address to communicate by
+#connecting the devices to the router
+#change the host to the ip address of your router on the client and server, choose a port
+#run server and client on one device and client on the other
+#you can start chatting 
+
 host = '127.0.0.1'#localhost
 port = 55556
 
