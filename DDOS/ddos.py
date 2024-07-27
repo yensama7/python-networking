@@ -1,3 +1,11 @@
+# How to use
+#Enter the directory DDOS
+#Run the command in the terminal py ddos.py -i (the desired ip address) : for windows
+#Run the command in the terminal python ddos.py -i (the desired ip address) : for Mac or linux
+#Example : py ddos.py -i 192.168.70.235
+#click enter
+
+
 import socket
 import threading
 import argparse

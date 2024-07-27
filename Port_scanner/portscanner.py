@@ -1,7 +1,8 @@
 # How to use
 #Enter the directory port_scanner
 #Run the command in the terminal py portscanner.py -i (the desired ip address)
-#Example : py portscanner.py -i 192.168.70.235
+#Example : py portscanner.py -i 192.168.70.235 : for windows
+#Run the command in the terminal python portscanner.py -i (the desired ip address) : for Mac or linux
 #click enter
 
 #****************************
